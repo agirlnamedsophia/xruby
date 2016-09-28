@@ -7,27 +7,24 @@ require_relative 'change'
 # 08a0cda
 class ChangeTest < Minitest::Test
   def test_single_coin_change
-    skip
     input = 25
     coins = [1, 5, 10, 25, 100]
     expected = [25]
-    assert_equal Change.generate(input, coins), expected
+    assert_equal(Change.generate(input, coins), expected)
   end
 
   def test_multiple_coin_change
-    skip
     input = 15
     coins = [1, 5, 10, 25, 100]
     expected = [5, 10]
-    assert_equal Change.generate(input, coins), expected
+    assert_equal(Change.generate(input, coins), expected)
   end
 
   def test_change_with_Lilliputian_Coins
-    skip
     input = 23
     coins = [1, 4, 15, 20, 50]
     expected = [4, 4, 15]
-    assert_equal Change.generate(input, coins), expected
+    assert_equal(Change.generate(input, coins), expected)
   end
 
   def test_change_with_Lower_Elbonia_Coins
@@ -47,7 +44,7 @@ class ChangeTest < Minitest::Test
   end
 
   def test_no_coins_make_0_change
-    skip
+    # skip
     input = 0
     coins = [1, 5, 10, 21, 25]
     expected = []
@@ -55,7 +52,7 @@ class ChangeTest < Minitest::Test
   end
 
   def test_error_testing_for_change_smaller_than_the_smallest_of_coins
-    skip
+    # skip
     input = 3
     coins = [5, 10]
     expected = -1

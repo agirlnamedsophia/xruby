@@ -1,31 +1,30 @@
 class Change
   class << self
     def generate(amount, coins)
-      # write the algorithm
+      # Write a program that will correctly determine the fewest number of coins
+      # to be given to the user such that the sum of the coins' value would
+      # equal the correct amount of change.
+      #
       # Given an infinite supply of coins with different values
       # find the smallest number of coins needed to make a desired
       # amount of change.
-      # m = [0] * (amount + 1)
-      # m[0] = 1
+      # if amount == 0 then return 0
+      coin_combos = []
+      current = 0
+      coin = coins[current]
+      remaining_amount = amount
 
-      m = [[0] * (coins.length + 1), [0] * (amount + 1)]
-      for i in (0...amount + 1)
-        m[0][i] = i
-      end
-      m
-
-      for c in (1...coins.length + 1)
-        for r in (1...amount + 1)
-          if coins[c - 1] == r
-            m[c][r] = 1
-          elsif coins[c - 1] > r
-            m[c][r] = m[c - 1][r]
-          else
-            m[c][r] = [m[c - 1][r], 1 + m[c][r - coins[c - 1]]].min
-          end
+      until remaining_amount == 0
+        until remaining_amount <= coin
+          current += 1
+          coin = coins[current]
+        end
+        coin_combos << coin
+        if coin < remaining_amount && coin > 0
+          remaining_amount -= coin
         end
       end
-      return m[-1][-1]
+      return coin_combos
     end
   end
 end
